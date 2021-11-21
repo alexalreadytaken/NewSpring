@@ -15,7 +15,7 @@ public class ApplicationContextImpl implements ApplicationContext {
     private Config config;
     @Setter
     private ObjectFactory objectFactory;
-    private Map<Class,Object> beans;
+    private Map<Class<?>,Object> beans;
 
     public ApplicationContextImpl(Config config) {
         this.config = config;

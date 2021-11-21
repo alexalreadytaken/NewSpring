@@ -6,6 +6,7 @@ import ru.ithub.newspring.configurators.ObjectConfigurator;
 import ru.ithub.newspring.contexts.ApplicationContext;
 import ru.ithub.newspring.factories.ObjectFactory;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +34,13 @@ public class ObjectFactoryImpl implements ObjectFactory {
 
     @SneakyThrows
     private <T> T createEmpty(Class<T> implClass){
-        return implClass.getDeclaredConstructor().newInstance();
+        Constructor<T> constructor;
+        try {
+            constructor = implClass.getDeclaredConstructor();
+        }catch (NoSuchMethodException e){
+            throw new RuntimeException("Component must contains empty constructor",e);
+        }
+        return constructor.newInstance();
     }
 
     private <T> void configure(T obj){
