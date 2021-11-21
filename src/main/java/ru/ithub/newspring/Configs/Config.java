@@ -1,5 +1,9 @@
 package ru.ithub.newspring.Configs;
 
+import org.reflections.Reflections;
+
 public interface Config {
-    <T> T getImplementation(Class<T> type);
+    <T> Class<? extends T> getImplementationClass(Class<T> type);
+
+    Reflections getReflections();
 }
