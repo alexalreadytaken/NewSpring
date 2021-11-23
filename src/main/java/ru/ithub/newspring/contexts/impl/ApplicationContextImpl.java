@@ -2,7 +2,7 @@ package ru.ithub.newspring.contexts.impl;
 
 import lombok.Getter;
 import lombok.Setter;
-import ru.ithub.newspring.Configs.Config;
+import ru.ithub.newspring.configs.Config;
 import ru.ithub.newspring.contexts.ApplicationContext;
 import ru.ithub.newspring.factories.ObjectFactory;
 

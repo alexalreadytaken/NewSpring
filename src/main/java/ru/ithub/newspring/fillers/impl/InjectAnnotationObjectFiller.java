@@ -1,16 +1,16 @@
-package ru.ithub.newspring.configurators.impl;
+package ru.ithub.newspring.fillers.impl;
 
 import lombok.SneakyThrows;
 import ru.ithub.newspring.annotations.Inject;
-import ru.ithub.newspring.configurators.ObjectConfigurator;
+import ru.ithub.newspring.fillers.ObjectFiller;
 import ru.ithub.newspring.contexts.ApplicationContext;
 
 import java.lang.reflect.Field;
 
-public class InjectAnnotationObjectConfigurator implements ObjectConfigurator {
+public class InjectAnnotationObjectFiller implements ObjectFiller {
 
     @SneakyThrows
-    public void configure(Object instance, ApplicationContext context) {
+    public void fill(Object instance, ApplicationContext context) {
         for (Field f: instance.getClass().getDeclaredFields()){
             if (f.isAnnotationPresent(Inject.class)){
                 f.setAccessible(true);

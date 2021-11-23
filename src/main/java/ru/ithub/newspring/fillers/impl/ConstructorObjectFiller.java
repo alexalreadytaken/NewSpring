@@ -1,7 +1,7 @@
-package ru.ithub.newspring.configurators.impl;
+package ru.ithub.newspring.fillers.impl;
 
 import ru.ithub.newspring.annotations.Inject;
-import ru.ithub.newspring.configurators.ObjectConfigurator;
+import ru.ithub.newspring.fillers.ObjectFiller;
 import ru.ithub.newspring.contexts.ApplicationContext;
 
 import java.lang.reflect.Constructor;
@@ -10,9 +10,9 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Optional;
 
-public class ConstructorObjectConfigurator implements ObjectConfigurator {
+public class ConstructorObjectFiller implements ObjectFiller {
 
-    public void configure(Object instance, ApplicationContext context) {
+    public void fill(Object instance, ApplicationContext context) {
         Class<?> instanceClass = instance.getClass();
         if (containsFieldWithInjectAnnotation(instanceClass)) return;
         getBiggestPublicConstructor(instance)

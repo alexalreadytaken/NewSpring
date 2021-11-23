@@ -1,7 +1,7 @@
 package ru.ithub.newspring.starters.impl;
 
-import ru.ithub.newspring.Configs.Config;
-import ru.ithub.newspring.Configs.impl.JavaConfig;
+import ru.ithub.newspring.configs.Config;
+import ru.ithub.newspring.configs.impl.JavaConfig;
 import ru.ithub.newspring.contexts.ApplicationContext;
 import ru.ithub.newspring.contexts.impl.ApplicationContextImpl;
 import ru.ithub.newspring.factories.ObjectFactory;

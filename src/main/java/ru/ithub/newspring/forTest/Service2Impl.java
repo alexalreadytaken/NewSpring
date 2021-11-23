@@ -1,4 +1,4 @@
-package ru.ithub.newspring.fortest;
+package ru.ithub.newspring.forTest;
 
 import ru.ithub.newspring.annotations.Component;
 

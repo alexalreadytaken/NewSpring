@@ -1,8 +1,8 @@
-package ru.ithub.newspring.Configs.impl;
+package ru.ithub.newspring.configs.impl;
 
 import lombok.Getter;
 import org.reflections.Reflections;
-import ru.ithub.newspring.Configs.Config;
+import ru.ithub.newspring.configs.Config;
 import ru.ithub.newspring.annotations.Component;
 
 import java.util.Set;

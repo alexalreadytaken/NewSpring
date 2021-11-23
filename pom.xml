@@ -9,14 +9,13 @@
     <version>0.1</version>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <cglib.version>3.3.0</cglib.version>
         <reflections.version>0.10.2</reflections.version>
         <lombok.version>1.18.22</lombok.version>
         <jsr250-api.version>1.0</jsr250-api.version>
     </properties>
-
 
     <dependencies>
         <dependency>

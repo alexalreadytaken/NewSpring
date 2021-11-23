@@ -5,7 +5,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+@Target({
+        ElementType.TYPE
+})
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface Inject {
+public @interface LogMethods {
+    boolean logInputMethod() default true;
+
+    boolean logOutputMethod() default true;
 }

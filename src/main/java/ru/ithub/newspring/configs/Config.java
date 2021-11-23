@@ -1,4 +1,4 @@
-package ru.ithub.newspring.Configs;
+package ru.ithub.newspring.configs;
 
 import org.reflections.Reflections;
 

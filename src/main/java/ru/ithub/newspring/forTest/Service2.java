@@ -1,4 +1,4 @@
-package ru.ithub.newspring.fortest;
+package ru.ithub.newspring.forTest;
 
 public interface Service2 {
 
