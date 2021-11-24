@@ -33,13 +33,13 @@ public class LogMethodProxyFiller implements ProxyFiller {
                     LocalDateTime.now(),implClass.getName(),
                     method.getName(),Arrays.toString(args));
         }
-        Object res = proxy.invoke(instance, args);
+        Object methodResult = proxy.invoke(instance, args);
         if (annotation.logOutputMethod()) {
             System.out.printf("%s = Class %s method '%s' output = %s \n",
                     LocalDateTime.now(),implClass.getName(),
-                    method.getName(),res);
+                    method.getName(),methodResult);
         }
-        return res;
+        return methodResult;
     }
 
 }

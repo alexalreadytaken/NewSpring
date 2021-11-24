@@ -12,20 +12,20 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ApplicationContextImpl implements ApplicationContext {
 
     @Getter
-    private Config config;
+    private final Config config;
     @Setter
     private ObjectFactory objectFactory;
-    private Map<Class<?>,Object> beans;
+    private final Map<Class<?>,Object> components;
 
     public ApplicationContextImpl(Config config) {
         this.config = config;
-        beans = new ConcurrentHashMap<>();
+        components = new ConcurrentHashMap<>();
     }
 
     @Override
     public <T> T getObject(Class<T> type) {
-        if (beans.containsKey(type)){
-            return (T) beans.get(type);
+        if (components.containsKey(type)){
+            return (T) components.get(type);
         }
 
         Class<? extends T> implClass = type;
@@ -35,7 +35,7 @@ public class ApplicationContextImpl implements ApplicationContext {
         }
 
         T t = objectFactory.createObject(implClass);
-        beans.put(type, t);
+        components.put(type, t);
         return t;
     }
 }
