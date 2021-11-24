@@ -1,17 +1,17 @@
-package ru.ithub.newspring.fillers.impl;
+package ru.ithub.newspring.configurators.impl;
 
 import lombok.SneakyThrows;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 import ru.ithub.newspring.annotations.LogMethods;
-import ru.ithub.newspring.fillers.ProxyFiller;
+import ru.ithub.newspring.configurators.ProxyConfigurator;
 
 import java.lang.reflect.Method;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-public class LogMethodProxyFiller implements ProxyFiller {
+public class LogMethodProxyConfigurator implements ProxyConfigurator {
 
     @SneakyThrows
     // TODO: 23.11.2021 log not all methods
@@ -29,13 +29,13 @@ public class LogMethodProxyFiller implements ProxyFiller {
     private Object wrapWithLog(Object instance, Class<?> implClass, Method method, Object[] args,
                                MethodProxy proxy, LogMethods annotation) throws Throwable {
         if (annotation.logInputMethod()){
-            System.out.printf("%s = Class %s method '%s' input arguments = %s \n",
+            System.out.printf("%s = Class %s method '%s()' input arguments = %s \n",
                     LocalDateTime.now(),implClass.getName(),
                     method.getName(),Arrays.toString(args));
         }
         Object methodResult = proxy.invoke(instance, args);
         if (annotation.logOutputMethod()) {
-            System.out.printf("%s = Class %s method '%s' output = %s \n",
+            System.out.printf("%s = Class %s method '%s()' output = %s \n",
                     LocalDateTime.now(),implClass.getName(),
                     method.getName(),methodResult);
         }

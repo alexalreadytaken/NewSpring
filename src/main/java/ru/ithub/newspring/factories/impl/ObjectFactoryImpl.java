@@ -2,10 +2,10 @@ package ru.ithub.newspring.factories.impl;
 
 import lombok.SneakyThrows;
 import org.reflections.Reflections;
-import ru.ithub.newspring.fillers.ObjectFiller;
+import ru.ithub.newspring.configurators.ObjectFiller;
 import ru.ithub.newspring.contexts.ApplicationContext;
 import ru.ithub.newspring.factories.ObjectFactory;
-import ru.ithub.newspring.fillers.ProxyFiller;
+import ru.ithub.newspring.configurators.ProxyConfigurator;
 
 import javax.annotation.PostConstruct;
 import java.lang.reflect.Constructor;
@@ -17,20 +17,20 @@ public class ObjectFactoryImpl implements ObjectFactory {
 
     private final ApplicationContext context;
     private final List<ObjectFiller> fillers;
-    private final List<ProxyFiller> proxyFillers;
+    private final List<ProxyConfigurator> proxyConfigurators;
 
     @SneakyThrows
     public ObjectFactoryImpl(ApplicationContext context) {
         this.context = context;
         fillers = new ArrayList<>();
-        proxyFillers = new ArrayList<>();
+        proxyConfigurators = new ArrayList<>();
         // TODO: 23.11.2021 config
         Reflections reflections = new Reflections("ru.ithub.newspring.fillers");
         for (Class<? extends ObjectFiller> filler: reflections.getSubTypesOf(ObjectFiller.class)){
             fillers.add(filler.getDeclaredConstructor().newInstance());
         }
-        for(Class<? extends ProxyFiller> filler: reflections.getSubTypesOf(ProxyFiller.class)){
-            proxyFillers.add(filler.getDeclaredConstructor().newInstance());
+        for(Class<? extends ProxyConfigurator> filler: reflections.getSubTypesOf(ProxyConfigurator.class)){
+            proxyConfigurators.add(filler.getDeclaredConstructor().newInstance());
         }
     }
 
@@ -68,7 +68,7 @@ public class ObjectFactoryImpl implements ObjectFactory {
 
     @SuppressWarnings("unchecked")
     private <T> T makeProxyIfNeeded(Class<T> implClass,T instance){
-        for (ProxyFiller filler: proxyFillers){
+        for (ProxyConfigurator filler: proxyConfigurators){
             instance = (T) filler.makeProxyIfNeeded(instance,implClass);
         }
         return instance;

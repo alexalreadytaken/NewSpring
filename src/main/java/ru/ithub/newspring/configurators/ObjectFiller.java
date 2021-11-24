@@ -1,4 +1,4 @@
-package ru.ithub.newspring.fillers;
+package ru.ithub.newspring.configurators;
 
 import ru.ithub.newspring.contexts.ApplicationContext;
 

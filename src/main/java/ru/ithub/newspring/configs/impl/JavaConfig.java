@@ -20,14 +20,12 @@ public class JavaConfig implements Config {
     public <T> Class<? extends T> getImplementationClass(Class<T> type) {
         Set<Class<? extends T>> subTypes = reflections.getSubTypesOf(type);
         subTypes.removeIf(this::isNotImplementation);
-        if (subTypes.size()!=1){
-            throw new RuntimeException("Incorrect implementations count of class = "+type);
+        subTypes.removeIf(cl->!cl.isAnnotationPresent(Component.class));
+        int size = subTypes.size();
+        if (size!=1){
+            throw new RuntimeException(String.format("Incorrect implementations count {%s} of class = %s",size,type));
         }
-        Class<? extends T> implClass = subTypes.iterator().next();
-        if (!implClass.isAnnotationPresent(Component.class)){
-            throw new RuntimeException("Not registered components with class = "+type);
-        }
-        return implClass;
+        return subTypes.iterator().next();
     }
 
     private <T> boolean isNotImplementation(Class<T> tClass){

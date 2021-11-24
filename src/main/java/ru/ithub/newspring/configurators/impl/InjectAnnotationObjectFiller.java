@@ -1,8 +1,8 @@
-package ru.ithub.newspring.fillers.impl;
+package ru.ithub.newspring.configurators.impl;
 
 import lombok.SneakyThrows;
 import ru.ithub.newspring.annotations.Inject;
-import ru.ithub.newspring.fillers.ObjectFiller;
+import ru.ithub.newspring.configurators.ObjectFiller;
 import ru.ithub.newspring.contexts.ApplicationContext;
 
 import java.lang.reflect.Field;
